@@ -1,8 +1,7 @@
-void swap(int &a, int &b){
-    a = a + b ;
-    b = a - b ;
-    a = a - b ;
-}
+#include <vector>
+#include <iostream>
+
+using namespace std;
 
 int indiceMinSubsec(vector<int> v, int l, int r){
     int i = r;
@@ -18,12 +17,16 @@ int indiceMinSubsec(vector<int> v, int l, int r){
 
 void ordenar1(vector<int>& v){
     int i = 0;
-    int n = v.size();
-    vector<int> s = v ;
+    int n = v.size() ;
+    int actual = 0;
     while(i<n){
-        v[i]= s[indiceMinSubsec(s,i,n)];
-        swap(s[i], s[indiceMinSubsec(s,i,n)]);
+        if(v[i]!=v[indiceMinSubsec(v,i,n)]){
+            actual = v[i];
+            v[i] = v[indiceMinSubsec(v,i,n)];
+            v[indiceMinSubsec(v,i,n)] = actual ;
+        } 
         i++;
+    }
   return;
 }
 
