@@ -57,3 +57,73 @@ int main() {
     
     return 0;
 }
+
+
+
+PRUEBA 
+
+
+
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+
+
+int indiceMinSubsec(vector<int> v, int l, int r){
+    int i = l+1;
+    int res = r;
+    while(i<r){
+        if(v[i]<v[res]){
+            res = i ;
+        }
+        i++ ;
+    }
+  return res;
+}
+
+
+void ordenar1(vector<int>& v){
+    int i = 0;
+    int n = v.size() ;
+    int actual = 0;
+    while(i<n-1){
+        int aux = indiceMinSubsec(v,i,n);
+        cout << aux << endl;
+        if(v[aux] < v[i]){
+            actual = v[i];
+            v[i] = v[aux];
+            v[aux] = actual ;
+        } 
+        i++;
+    }
+  return;
+}
+
+int main() {
+
+    int n; //Longitud del vector
+    cin >> n;
+    int i = 0;
+    int x;
+    vector<int> v;// En v leo el vector
+    while (i<n){
+        cin >> x;
+        v.push_back(x);
+        i++;
+    }
+
+    // Hago el ordenamiento
+    ordenar1(v);
+    
+    // Imprimo el vector resultado
+    i = 0;
+    while (i < v.size()){
+        cout << v[i] << " ";
+        i++;
+    }
+    
+    return 0;
+} 
+
